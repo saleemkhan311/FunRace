@@ -20,7 +20,7 @@ public class followPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (manager.gameHasEnded != true )
+        if (!manager.gameHasEnded  || !manager.failed )
         {
             Vector3 desiredPos = new Vector3(transform.position.x, target.position.y + offSet.y, target.position.z + offSet.z);
             Vector3 smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed);

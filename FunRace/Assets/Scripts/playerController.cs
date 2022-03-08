@@ -25,18 +25,13 @@ public class playerController : MonoBehaviour
             
         }
     }
-    void Throw()
-    {
-        
-        float randomDirection = Random.Range(-1000, 1000) * Time.deltaTime;
-        rb.AddForce(randomDirection, 1000*Time.deltaTime, randomDirection);
-    }
+    
     private void OnCollisionEnter(Collision collisionInfo)
     {
         if(collisionInfo.collider.tag == "Obstacle")
         {
-            manager.Restart();
-            Throw();
+            manager.failed = true;
+            
             
         }
     }

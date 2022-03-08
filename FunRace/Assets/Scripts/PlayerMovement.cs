@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         
         
-        if(Input.GetMouseButton(0) && manager.gameHasEnded ==false)
+        if((Input.GetMouseButton(0) && !manager.gameHasEnded) && (Input.GetMouseButton(0) &&!manager.failed)  )
         {
             transform.Translate(transform.forward * speed * Time.deltaTime);
         }
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     
     void OnMouseDown()
     {
-       if(manager.gameHasEnded == false)
+       if(manager.gameHasEnded == false|| !manager.failed)
         {
             screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
             offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     void OnMouseDrag()
     {
         
-        if(manager.gameHasEnded == false)
+        if(manager.gameHasEnded == false || !manager.failed)
         {
             Vector3 cursorPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
             Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(cursorPoint) + offset;

@@ -7,7 +7,7 @@ public class gameManager : MonoBehaviour
     public static gameManager singleton;
     public bool gameHasStarted;
     public bool gameHasEnded = false;
-    public bool failed = false;
+    public bool failed;
     PlayerMovement movement;
     public Transform player;
     public Transform endPoint;
@@ -65,6 +65,12 @@ public class gameManager : MonoBehaviour
     }
     void Update()
     {
+
+        if(failed)
+        {
+            Invoke("Restart", 3);
+        }
+
         distanceLeft = Vector3.Distance(player.position, endPoint.position);
 
         if(distanceLeft > entireDistance)
